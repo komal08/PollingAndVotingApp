@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="UpandDownVoting">
+
+<head>
+<meta charset="utf-8" />
+<title>AngularJS UpandDownVoting</title>
+<style type="text/css">
+/* Put your css in here */
+.up {
+	color: green;
+}
+
+.down {
+	color: red;
+}
+</style>
+<link data-require="fontawesome@*" data-semver="4.1.0" rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+/>
+<script>
+    document.write('<base href="' + document.location + '" />');
+  </script>
+<link rel="stylesheet" href="style.css" />
+<script data-require="angular.js@1.2.x"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"
+	data-semver="1.2.16"
+></script>
+<script type="text/javascript">  
+  var app = angular.module('UpandDownVoting', []);
+
+  app.controller('MainCtrl', function($scope) {
+    $scope.changeVote = function(vote, flag){
+      $scope.vote = vote==flag?'None':flag;
+      //alert($scope.vote);
+      $scope.value='';
+      
+      if($scope.vote==='up'){
+    	  $scope.value++;    	  
+      }else{
+    	  $scope.value++;
+      }
+    };
+  });
+
+  </script>
+
+</head>
+
+
+<body ng-controller="MainCtrl">
+	<i title="Up Votes" ng-click="changeVote(vote, 'up')"
+		class="fa fa-arrow-circle-up fa-2x"
+		ng-class="{true:'up', false:''}[vote=='up']"
+	></i>
+	<br>
+	<i title="Down Votes" ng-click="changeVote(vote, 'down')"
+		class="fa fa-arrow-circle-down fa-2x"
+		ng-class="{true:'down', false:''}[vote=='down']"
+	></i>
+	<br>Vote: {{vote}}
+	<br> Count : {{value}}
+</body>
+
+</html>
